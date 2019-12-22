@@ -1,0 +1,178 @@
+> setwd(work.d)
+> for(tryi in 1:20){
++ #fit.coda <- as.mcmc.list(fit)
++ fit.coda = read.openbugs(stem="",thin = 10)
++ del.id = na.omit(match(c('ppp'),varnames(fit.coda)))
++ tmp.conv = geweke.diag(fit.coda[,-del.id])[[1]]$z
++ print(tmp.conv)
++ print(fit,3)
++ if(sum((abs(tmp.conv)>1.96),na.rm = TRUE)==0){
++ break
++ }else{
++ fit = bugs(data,initsl,prm,model.fn,
++ n.chains=1,n.iter=30001,DIC = TRUE,
++ n.burnin=1,n.thin = 1,
++ restart = TRUE,saveExec = TRUE,working.directory = work.d)
++ }
++ }
+Abstracting deviance ... 3000 valid values
+Abstracting mu.L[1] ... 3000 valid values
+Abstracting mu.L[2] ... 3000 valid values
+Abstracting mu.L[3] ... 3000 valid values
+Abstracting mu.L[4] ... 3000 valid values
+Abstracting mu.L[5] ... 3000 valid values
+Abstracting mu.L[6] ... 3000 valid values
+Abstracting mu.L[7] ... 3000 valid values
+Abstracting mu.L[8] ... 3000 valid values
+Abstracting mu.L[9] ... 3000 valid values
+Abstracting mu.L[10] ... 3000 valid values
+Abstracting mu.rho ... 3000 valid values
+Abstracting ppp ... 3000 valid values
+Abstracting sd.L[1] ... 3000 valid values
+Abstracting sd.L[2] ... 3000 valid values
+Abstracting sd.L[3] ... 3000 valid values
+Abstracting sd.L[4] ... 3000 valid values
+Abstracting sd.L[5] ... 3000 valid values
+Abstracting sd.L[6] ... 3000 valid values
+Abstracting sd.L[7] ... 3000 valid values
+Abstracting sd.L[8] ... 3000 valid values
+Abstracting sd.L[9] ... 3000 valid values
+Abstracting sd.L[10] ... 3000 valid values
+Abstracting sd.rho ... 3000 valid values
+  deviance    mu.L[1]    mu.L[2]    mu.L[3]    mu.L[4]    mu.L[5]    mu.L[6] 
+ 0.9670788 -0.1341553 -0.6685000  0.7954438  0.1005990 -1.4851978  0.7043639 
+   mu.L[7]    mu.L[8]    mu.L[9]   mu.L[10]     mu.rho    sd.L[1]    sd.L[2] 
+-0.4321515  0.5884349 -0.8006175  0.4666243 -1.5705601 -1.1142129  0.1169986 
+   sd.L[3]    sd.L[4]    sd.L[5]    sd.L[6]    sd.L[7]    sd.L[8]    sd.L[9] 
+ 0.1001862  0.6445592  0.2251328 -0.1529883  1.1083351  1.0472598  0.6962429 
+  sd.L[10]     sd.rho 
+-1.9106083  0.3514945 
+Inference for Bugs model at "D:/Research/180307A/Compare3MASEM/CFA/CFARandom.txt", 
+Current: 1 chains, each with 60000 iterations (first 30000 discarded)
+Cumulative: n.sims = 30000 iterations saved
+              mean     sd      2.5%       25%       50%       75%     97.5%
+mu.L[1]      0.727  0.019     0.690     0.715     0.727     0.740     0.764
+mu.L[2]      0.652  0.016     0.620     0.641     0.652     0.663     0.684
+mu.L[3]      0.569  0.017     0.535     0.557     0.569     0.580     0.602
+mu.L[4]      0.657  0.023     0.613     0.642     0.658     0.673     0.703
+mu.L[5]      0.783  0.013     0.757     0.775     0.783     0.792     0.809
+mu.L[6]      0.746  0.013     0.720     0.737     0.745     0.754     0.772
+mu.L[7]      0.651  0.019     0.614     0.638     0.651     0.664     0.689
+mu.L[8]      0.735  0.009     0.718     0.730     0.735     0.741     0.752
+mu.L[9]      0.533  0.039     0.455     0.507     0.533     0.559     0.610
+mu.L[10]     0.745  0.016     0.715     0.735     0.745     0.756     0.777
+sd.L[1]      0.092  0.016     0.064     0.080     0.090     0.102     0.127
+sd.L[2]      0.076  0.013     0.055     0.067     0.075     0.084     0.106
+sd.L[3]      0.080  0.013     0.059     0.071     0.079     0.088     0.109
+sd.L[4]      0.118  0.018     0.087     0.105     0.116     0.128     0.158
+sd.L[5]      0.055  0.011     0.036     0.047     0.054     0.062     0.081
+sd.L[6]      0.055  0.011     0.036     0.047     0.054     0.062     0.081
+sd.L[7]      0.094  0.015     0.068     0.083     0.092     0.103     0.128
+sd.L[8]      0.024  0.010     0.007     0.017     0.023     0.030     0.045
+sd.L[9]      0.219  0.031     0.169     0.198     0.216     0.238     0.289
+sd.L[10]     0.071  0.013     0.048     0.062     0.070     0.080     0.101
+mu.rho       0.720  0.024     0.672     0.704     0.720     0.736     0.766
+sd.rho       0.131  0.021     0.096     0.116     0.129     0.144     0.177
+ppp          0.696  0.460     0.000     0.000     1.000     1.000     1.000
+deviance -3381.995 36.319 -3452.000 -3407.000 -3382.000 -3358.000 -3310.000
+
+DIC info (using the rule, pD = Dbar-Dhat)
+pD = 317.000 and DIC = -3065.000
+DIC is an estimate of expected predictive error (lower deviance is better).
+Warning message:
+In read.openbugs(stem = "", thin = 10) :
+  Files "CODAindex.txt" and "CODAchain1.txt" were created at different times
+
+> summary(fit.coda)
+
+Iterations = 30001:59991
+Thinning interval = 10 
+Number of chains = 1 
+Sample size per chain = 3000 
+
+1. Empirical mean and standard deviation for each variable,
+   plus standard error of the mean:
+
+               Mean        SD  Naive SE Time-series SE
+deviance -3.383e+03 35.490969 0.6479735      0.6622491
+mu.L[1]   7.275e-01  0.018881 0.0003447      0.0003447
+mu.L[2]   6.522e-01  0.016563 0.0003024      0.0003024
+mu.L[3]   5.687e-01  0.016949 0.0003095      0.0002904
+mu.L[4]   6.580e-01  0.022271 0.0004066      0.0003870
+mu.L[5]   7.834e-01  0.013180 0.0002406      0.0002406
+mu.L[6]   7.453e-01  0.013393 0.0002445      0.0002445
+mu.L[7]   6.512e-01  0.018875 0.0003446      0.0003446
+mu.L[8]   7.352e-01  0.008619 0.0001574      0.0001790
+mu.L[9]   5.323e-01  0.039006 0.0007121      0.0007121
+mu.L[10]  7.456e-01  0.015815 0.0002887      0.0002965
+mu.rho    7.191e-01  0.024243 0.0004426      0.0004426
+ppp       7.003e-01  0.458188 0.0083653      0.0083653
+sd.L[1]   9.153e-02  0.016065 0.0002933      0.0002933
+sd.L[2]   7.633e-02  0.013061 0.0002385      0.0002385
+sd.L[3]   8.024e-02  0.013046 0.0002382      0.0002382
+sd.L[4]   1.175e-01  0.018157 0.0003315      0.0003423
+sd.L[5]   5.536e-02  0.011570 0.0002112      0.0002112
+sd.L[6]   5.549e-02  0.011656 0.0002128      0.0002191
+sd.L[7]   9.378e-02  0.015266 0.0002787      0.0002736
+sd.L[8]   2.391e-02  0.009737 0.0001778      0.0003105
+sd.L[9]   2.199e-01  0.031566 0.0005763      0.0005763
+sd.L[10]  7.158e-02  0.013382 0.0002443      0.0002443
+sd.rho    1.312e-01  0.021946 0.0004007      0.0004283
+
+2. Quantiles for each variable:
+
+               2.5%        25%        50%        75%      97.5%
+deviance -3.452e+03 -3.406e+03 -3.383e+03 -3.359e+03 -3.313e+03
+mu.L[1]   6.895e-01  7.153e-01  7.277e-01  7.398e-01  7.656e-01
+mu.L[2]   6.201e-01  6.408e-01  6.520e-01  6.627e-01  6.842e-01
+mu.L[3]   5.355e-01  5.572e-01  5.689e-01  5.798e-01  6.025e-01
+mu.L[4]   6.142e-01  6.430e-01  6.582e-01  6.726e-01  7.028e-01
+mu.L[5]   7.573e-01  7.746e-01  7.836e-01  7.923e-01  8.083e-01
+mu.L[6]   7.203e-01  7.362e-01  7.449e-01  7.540e-01  7.725e-01
+mu.L[7]   6.133e-01  6.390e-01  6.508e-01  6.633e-01  6.885e-01
+mu.L[8]   7.182e-01  7.297e-01  7.355e-01  7.410e-01  7.515e-01
+mu.L[9]   4.576e-01  5.060e-01  5.314e-01  5.586e-01  6.117e-01
+mu.L[10]  7.142e-01  7.352e-01  7.457e-01  7.558e-01  7.774e-01
+mu.rho    6.718e-01  7.029e-01  7.194e-01  7.357e-01  7.670e-01
+ppp       0.000e+00  0.000e+00  1.000e+00  1.000e+00  1.000e+00
+sd.L[1]   6.424e-02  8.047e-02  8.999e-02  1.012e-01  1.267e-01
+sd.L[2]   5.473e-02  6.702e-02  7.508e-02  8.413e-02  1.052e-01
+sd.L[3]   5.909e-02  7.114e-02  7.919e-02  8.743e-02  1.082e-01
+sd.L[4]   8.676e-02  1.048e-01  1.162e-01  1.280e-01  1.569e-01
+sd.L[5]   3.547e-02  4.726e-02  5.413e-02  6.232e-02  8.070e-02
+sd.L[6]   3.652e-02  4.733e-02  5.425e-02  6.244e-02  8.286e-02
+sd.L[7]   6.858e-02  8.279e-02  9.221e-02  1.027e-01  1.282e-01
+sd.L[8]   7.053e-03  1.699e-02  2.318e-02  3.002e-02  4.419e-02
+sd.L[9]   1.673e-01  1.973e-01  2.170e-01  2.386e-01  2.919e-01
+sd.L[10]  4.913e-02  6.211e-02  7.039e-02  7.956e-02  1.005e-01
+sd.rho    9.422e-02  1.156e-01  1.289e-01  1.449e-01  1.793e-01
+
+> HPDinterval(fit.coda,prob = .95)
+[[1]]
+              lower      upper
+deviance -3.453e+03 -3.316e+03
+mu.L[1]   6.868e-01  7.621e-01
+mu.L[2]   6.201e-01  6.843e-01
+mu.L[3]   5.340e-01  6.010e-01
+mu.L[4]   6.130e-01  7.012e-01
+mu.L[5]   7.571e-01  8.082e-01
+mu.L[6]   7.203e-01  7.726e-01
+mu.L[7]   6.131e-01  6.881e-01
+mu.L[8]   7.181e-01  7.514e-01
+mu.L[9]   4.554e-01  6.090e-01
+mu.L[10]  7.162e-01  7.790e-01
+mu.rho    6.735e-01  7.678e-01
+ppp       0.000e+00  1.000e+00
+sd.L[1]   5.899e-02  1.205e-01
+sd.L[2]   5.244e-02  1.020e-01
+sd.L[3]   5.596e-02  1.035e-01
+sd.L[4]   8.297e-02  1.523e-01
+sd.L[5]   3.341e-02  7.813e-02
+sd.L[6]   3.507e-02  8.006e-02
+sd.L[7]   6.787e-02  1.271e-01
+sd.L[8]   5.428e-03  4.203e-02
+sd.L[9]   1.615e-01  2.819e-01
+sd.L[10]  4.695e-02  9.682e-02
+sd.rho    9.250e-02  1.766e-01
+attr(,"Probability")
+[1] 0.95
