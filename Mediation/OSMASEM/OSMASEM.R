@@ -7,7 +7,7 @@ wd = 'working_directory'
 dat = read.csv(paste(wd,'data3.csv',sep=''))
 
 # Data preparation 
-Ni 		= dat[,3] # primary study sample sizes
+Ni 	= dat[,3] # primary study sample sizes
 Nstudy 	= nrow(dat) # number of primary studies
 
 vR	= as.matrix(dat[,c(4,6,5)])
@@ -58,14 +58,14 @@ dat = read.csv(paste(wd,'Med/data3.csv',sep=''))
 # Data preparation 
 # remove studies with missing values on the moderator
 na.id	= which(is.na(dat[,"T1DeprR"])==1) 
-dat		= dat[-na.id,]
-Ni 		= dat[,3] # primary study sample sizes
+dat	= dat[-na.id,]
+Ni 	= dat[,3] # primary study sample sizes
 Nstudy 	= nrow(dat) # number of primary studies
 
-M		= dat[,"T1DeprR"]	# moderator: baseline depression severity
+M	= dat[,"T1DeprR"]	# moderator: baseline depression severity
 predM	= c(min(M),median(M),max(M)) # low, medorate and high 
 predM	= (predM-mean(M))/sd(M)
-M		= (M-mean(M))/sd(M)
+M	= (M-mean(M))/sd(M)
 
 vR	= as.matrix(dat[,c(4,6,5)])
 MFd	= vector('list',Nstudy)
@@ -127,7 +127,7 @@ anova(fit1, fit0)
 # mean indirect effect and its SE
 # Delta method
 Sigma	= vcov(fit0)[c(1,3),c(1,3)]
-est		= coef(fit0)[c(1,3)]
+est	= coef(fit0)[c(1,3)]
 # All moderating effects were not significant
 ab.est	= est[1]*est[2]
 ab.se	= sqrt(t(est[c(2,1)])%*%Sigma%*%est[c(2,1)])
@@ -136,7 +136,7 @@ ab.se
 
 ### Prediction
 # Predicted values
-est		= coef(fit1)[c(2,5)]
+est	= coef(fit1)[c(2,5)]
 pred	= cbind(rep(1),predM)%*%est
 
 # Calculate prediction SE using Delta method
@@ -146,7 +146,4 @@ for(i in 1:3){
 	se.pred[i] = sqrt(t(c(1,predM[i]))%*%Sigma%*%c(1,predM[i]))
 }
 cbind(pred,se.pred)
-
-
-
 
