@@ -1,0 +1,2 @@
+# Compare-3-MASEM-Approches
+This project aims to compare theoretically and empirically three meta-analytic structural equation modeling (MASEM) approaches to model-based meta-analysis: Full imformation MASEM (FIMASEM), one-stage MASEM (OSMASEM), and Bayesian MASEM (BMASEM). The three MASEM approaches were compared through two real model-based meta-analyses involving testing a mediation model and a confirmatory factor analysis model.
